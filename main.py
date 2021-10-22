@@ -21,7 +21,7 @@ def helloWorld():
 @app.route('/prediction')
 def predictionResults():
     bqclient = bigquery.Client()
-    query_string = """SELECT * FROM ML.PREDICT (MODEL `census.census_model`,(SELECT * FROM `census.input_view` WHERE dataframe = 'prediction'))"""
+    query_string = """SELECT predicted_income_bracket,probability FROM `burnished-ember-328422.census.predictionResults` LIMIT 10"""
     
     df = (
         bqclient.query(query_string)
