@@ -20,12 +20,9 @@ def helloWorld():
 
 @app.route('/prediction')
 def predictionResults():
-    val = {"value": "hello World"}
-    return jsonify(val)
     bqclient = bigquery.Client()
-    query_string = """SELECT * FROM ML.PREDICT (MODEL `census.census_model`,(SELECT * FROM`census.input_view`WHERE dataframe = 'prediction' ) )"""
+    query_string = """SELECT * FROM ML.PREDICT (MODEL `census.census_model`,(SELECT * FROM `census.input_view` WHERE dataframe = 'prediction'))"""
     
-
     df = (
         bqclient.query(query_string)
         .result()
