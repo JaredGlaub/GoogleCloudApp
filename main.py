@@ -3,6 +3,7 @@ from flask import jsonify
 from google.cloud import bigquery
 
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route('/')
 def hello():
@@ -21,7 +22,7 @@ def helloWorld():
 @app.route('/prediction')
 def predictionResults():
     bqclient = bigquery.Client()
-    query_string = """SELECT predicted_income_bracket,probability FROM `burnished-ember-328422.census.predictionResults` LIMIT 10"""
+    query_string = """SELECT predicted_income_bracket,probability, top_feature_attributions FROM `burnished-ember-328422.census.predictionResults` LIMIT 10"""
     
     df = (
         bqclient.query(query_string)
@@ -33,7 +34,7 @@ def predictionResults():
             create_bqstorage_client=True,
         )
     )
-    shorten = df.head(1)
+    shorten = df.head(2)
     json_results = shorten.to_json()
     return json_results
 
