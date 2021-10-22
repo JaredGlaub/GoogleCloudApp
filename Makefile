@@ -3,13 +3,13 @@ install:
 		pip install -r requirements.txt
 
 test:
-	python -m pytest -vv hello.py
+	python -m pytest -vv main_test.py
 
 format:
 	black *.py
 
 
 lint:
-	pylint --disable=R,C hello.py
+	pylint --disable=R,C main.py
 
 all: install lint test
