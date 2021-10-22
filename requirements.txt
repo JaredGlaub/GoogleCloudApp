@@ -1,8 +1,5 @@
 Flask
 pylint
 pytest
-#black
-# google-cloud-bigquery
+black
 google-cloud-bigquery[bqstorage,pandas]
-# bqstorage
-# pandas
