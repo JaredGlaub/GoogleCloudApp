@@ -32,8 +32,9 @@ def predictionResults():
             # API is used by default.
             create_bqstorage_client=True,
         )
-    )    
-    json_results = df.to_json()
+    )
+    shorten = df.head(10)
+    json_results = shorten.to_json()
     return json_results
 
 if __name__ == '__main__':
