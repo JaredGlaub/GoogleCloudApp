@@ -33,7 +33,7 @@ def predictionResults():
             create_bqstorage_client=True,
         )
     )
-    shorten = df.head(10)
+    shorten = df.head(1)
     json_results = shorten.to_json()
     return json_results
 
