@@ -19,11 +19,20 @@ def helloWorld():
     return jsonify(val)
 
 @app.route('/prediction')
-    client = bigquery.Client()
+def predictionResults():
+    bqclient = bigquery.Client()
+    query_string = """SELECT FROM `burnished-ember-328422.census.predictionResults` LIMIT 10"""
 
-    SELECT  FROM `burnished-ember-328422.census.predictionResults` LIMIT 10
-
-    df = client.query(sql).to_dataframe()
+    df = (
+        bqclient.query(query_string)
+        .result()
+        .to_dataframe(
+            # Optionally, explicitly request to use the BigQuery Storage API. As of
+            # google-cloud-bigquery version 1.26.0 and above, the BigQuery Storage
+            # API is used by default.
+            create_bqstorage_client=True,
+        )
+    )    
     json_results = df.to_json()
     return json_results
 

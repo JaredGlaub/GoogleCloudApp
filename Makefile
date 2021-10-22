@@ -1,7 +1,7 @@
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt &&\
-		pip install --upgrade google-cloud-bigquery[pandas]
+		pip install --upgrade 'google-cloud-bigquery[bqstorage,pandas]'
 
 test:
 	#python -m pytest -vv test_hello.py
