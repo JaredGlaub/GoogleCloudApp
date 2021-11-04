@@ -1,12 +1,15 @@
-name: Python application test with Github Actions
+name: Deployment with CI+CD
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -25,3 +28,38 @@ jobs:
     - name: Format code
       run: |
         make format
+  
+  DeployDev:
+    name: Deploy to Dev
+    if: github.event_name == 'pull_request'
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Development
+      url: https://burnished-ember-328422.nw.r.appspot.com
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+  
+  DeployStaging:
+    name: Deploy to Staging 
+    if: github.event.ref == 'refs/heads/main'
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Staging
+      url: https://burnished-ember-328422.nw.r.appspot.com
+    steps:
+      - name: Deploy
+        run: echo I am deploying!
+        
+  DeployProd:
+    name: Deploy to Production 
+    needs: [DeployStaging]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Production
+      url: https://burnished-ember-328422.nw.r.appspot.com
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
