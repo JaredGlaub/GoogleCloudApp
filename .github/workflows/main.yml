@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: Development
-      url: https://burnished-ember-328422.nw.r.appspot.com
+      url: https://burnished-ember-328422.nw.r.appspot.com/prediction
     steps:
       - name: Deploy
         run: echo I am deploying! 
