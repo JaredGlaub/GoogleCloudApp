@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify, request
 from google.cloud import bigquery
 
 app = Flask(__name__)
@@ -13,6 +12,18 @@ def hello():
 def name(value):
     val = {"value": value}
     return jsonify(val)
+
+@app.route('/login',  methods=['GET', 'POST'])
+def login():
+    deviceid = request.values.get('deviceid')
+    return '/login - device: {}\n'.format(deviceid)
+
+@app.route('/metrics',  methods=['GET', 'POST'])
+def metrics():
+    deviceid = request.values.get('deviceid')
+    timestamp = request.values.get('timestamp')
+    
+    return '/metrics - device: {}, timestamp: {}\n'.format(deviceid, timestamp)
 
 @app.route('/helloWorld')
 def helloWorld():

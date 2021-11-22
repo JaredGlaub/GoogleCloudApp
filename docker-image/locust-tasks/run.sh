@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,10 +15,16 @@
 # limitations under the License.
 
 
-runtime: python37
+LOCUST="/usr/local/bin/locust"
+LOCUS_OPTS="-f /locust-tasks/tasks.py --host=$TARGET_HOST"
+LOCUST_MODE=${LOCUST_MODE:-standalone}
 
-instance_class: F2
+if [[ "$LOCUST_MODE" = "master" ]]; then
+    LOCUS_OPTS="$LOCUS_OPTS --master"
+elif [[ "$LOCUST_MODE" = "worker" ]]; then
+    LOCUS_OPTS="$LOCUS_OPTS --slave --master-host=$LOCUST_MASTER"
+fi
 
-handlers:
-- url: /.*
-  script: auto
+echo "$LOCUST $LOCUS_OPTS"
+
+$LOCUST $LOCUS_OPTS
