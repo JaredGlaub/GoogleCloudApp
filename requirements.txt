@@ -1,5 +1,4 @@
-Flask
+Flask>=1.0.2
 pylint
 pytest
-black
 google-cloud-bigquery[bqstorage,pandas]
