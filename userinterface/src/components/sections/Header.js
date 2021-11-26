@@ -82,7 +82,7 @@ const Header = (props) => {
             <MenuItem component = {Link} to="/DoodleNet">DoodleNet </MenuItem>
             <MenuItem isLast>
               <form>
-                <a href="hhttps://github.com/JaredGlaub/GoogleCloudApp">
+                <a href="https://github.com/JaredGlaub/GoogleCloudApp">
                   <Button
                     type = "button"
                     size="sm"
