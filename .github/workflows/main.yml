@@ -52,6 +52,12 @@ jobs:
     steps:
       - name: Deploy
         run: echo I am deploying!
+      - name: Install dependencies
+        run: npm install
+      - name: Run the tests
+        run: npm test
+      - name: Build
+        run: npm run build
         
   DeployProd:
     name: Deploy to Production 
