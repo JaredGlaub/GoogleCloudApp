@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, redirect
+from flask import Flask, jsonify, request, render_template
 from google.cloud import bigquery
 
 app = Flask(__name__, template_folder="./userinterface/public")
