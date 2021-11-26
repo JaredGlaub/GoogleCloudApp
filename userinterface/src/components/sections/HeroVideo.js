@@ -59,7 +59,6 @@ export default function HeroVideo({
           color="primary.800"
           opacity="0.6"
         >
-          Created with Help From ___
         </Text>
       </Stack>
         {/* {video} */}

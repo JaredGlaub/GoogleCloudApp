@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import Logo from "../ui/Logo";
 
@@ -76,26 +76,28 @@ const Header = (props) => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          <MenuItem to="/">Home</MenuItem>
-          <MenuItem to="/">How</MenuItem>
-          <MenuItem to="/">Features </MenuItem>
-          <MenuItem to="/">Pricing </MenuItem>
-          <MenuItem to="/" isLast>
-            <form>
-              <Button
-                formaction="https://Github.com/JaredGlaub"
-                size="sm"
-                rounded="md"
-                color={["primary.500", "primary.500", "black", "black"]}
-                bg={["white", "white", "primary.600", "primary.600"]}
-                _hover={{
-                  bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-                }}
-              >
-              Github
-              </Button>
-            </form>
-          </MenuItem>
+            <MenuItem component = {Link} to="/">Home</MenuItem>
+            <MenuItem component = {Link} to="/Animated">Animated</MenuItem>
+            <MenuItem component = {Link} to="/Training">Training </MenuItem>
+            <MenuItem component = {Link} to="/DoodleNet">DoodleNet </MenuItem>
+            <MenuItem isLast>
+              <form>
+                <a href="hhttps://github.com/JaredGlaub/GoogleCloudApp">
+                  <Button
+                    type = "button"
+                    size="sm"
+                    rounded="md"
+                    color={["primary.500", "primary.500", "black", "black"]}
+                    bg={["white", "white", "primary.600", "primary.600"]}
+                    _hover={{
+                      bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
+                    }}
+                  >
+                  Github
+                  </Button>
+                </a>
+              </form>
+            </MenuItem>
         </Flex>
       </Box>
     </Flex>

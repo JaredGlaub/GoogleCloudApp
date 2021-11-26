@@ -35,6 +35,3 @@ export default function Landing() {
     </SimpleGrid>
   );
 }
-
-  // <iframe title = "P5" src="https://editor.p5js.org/JaredGlaub/full/Y0hZKucLW" width="600" height="650">
-  // </iframe>
