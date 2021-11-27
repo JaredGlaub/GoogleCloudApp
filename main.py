@@ -4,16 +4,21 @@ from google.cloud import bigquery
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-@app.route('/')
-def main_route():
-    return render_template("index.html")
+# @app.route('/')
+# def main_route():
+#     return render_template("index.html")
+
+# @app.route('/')
+# def name():
+#     val = "Hello World"
+#     return jsonify(val)
 
 @app.route('/name/<name>')
 def name(value):
     val = {"value": value}
     return jsonify(val)
 
-@app.route('/login',  methods=['GET', 'POST'])
+@app.route('/',  methods=['GET', 'POST'])
 def login():
     deviceid = request.values.get('deviceid')
     return '/login - device: {}\n'.format(deviceid)
