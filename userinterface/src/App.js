@@ -8,7 +8,7 @@ import DoodleNet from "./pages/DoodleNet";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="process.env.burnished-ember-328422.nw.r.appspot.com">
         <Routes>
           <Route path="/" element={<Landing/>} />
           <Route path='/Animated' element={<Animated/>} />
