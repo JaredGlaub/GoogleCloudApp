@@ -19,6 +19,14 @@ jobs:
     - name: Install dependencies
       run: |
         make install
+    - name: Install NPM
+      working-directory: ./userinterface
+      run: |
+        npm install
+    - name: Build NPM
+      working-directory: ./userinterface
+      run: |
+        npm run build
     - name: Lint with pylint
       run: |
         make lint
