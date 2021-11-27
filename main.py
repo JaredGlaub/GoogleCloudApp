@@ -1,11 +1,8 @@
 from flask import Flask, jsonify, request, send_from_directory
 from google.cloud import bigquery
 
-app = Flask(__name__)
-app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-
-
 app = Flask(__name__, static_folder='userinterface/build')
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route("/", defaults={'path':''})
 def serve():
