@@ -20,8 +20,6 @@ jobs:
       working-directory: ./backend
       run: |
         make install
-        npm install
-        npm build
     - name: Lint with pylint
       working-directory: ./backend
       run: |
@@ -57,15 +55,15 @@ jobs:
     steps:
       - name: Deploy
         run: echo I am deploying!
-#       - name: Install dependencies
-#         run: npm install
-    
-#       - name: Run the tests
-#         working-directory: /GoogleCloudApp/userinterface
-#         run: npm test
-#       - name: Build
-#         working-directory: /GoogleCloudApp/userinterface
-#         run: npm run build
+      - name: Install dependencies
+        working-directory: ./userinterface
+        run: npm install
+      - name: Run the tests
+        working-directory: ./userinterface
+        run: npm test
+      - name: Build
+        working-directory: ./userinterface
+        run: npm run build
         
   DeployProd:
     name: Deploy to Production 
