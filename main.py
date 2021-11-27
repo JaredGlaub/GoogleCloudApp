@@ -45,4 +45,4 @@ def predictionResults():
     return json_results
 
 if __name__ == '__main__':
-    app.run(host='https://burnished-ember-328422.nw.r.appspot.com/', debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
