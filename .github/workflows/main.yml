@@ -19,7 +19,11 @@ jobs:
     - name: Install dependencies
       run: |
         make install
-    - name: Run Build
+    - name: Install NPM
+      working-directory: ./userinterface
+      run: |
+        npm install
+    - name: Build NPM
       working-directory: ./userinterface
       run: |
         npm run build
