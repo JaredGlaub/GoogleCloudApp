@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+
+  flask-api:
+    container_name: app-app
+    restart: always
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    volumes:
+      - ./backend:/usr/src/app
+
+  client:
+    container_name: react-app
+    build:
+      context: ./userinterface
+      dockerfile: Dockerfile
+    volumes:
+      - './userinterface:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - "flask-api"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - HOST_URL=https://burnished-ember-328422.nw.r.appspot.com
