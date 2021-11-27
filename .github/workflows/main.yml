@@ -23,12 +23,14 @@ jobs:
         npm install
         npm build
     - name: Lint with pylint
+      working-directory: ./backend
       run: |
         make lint
 #     - name: Test with pytest
 #       run: |
 #         make test
     - name: Format code
+      working-directory: ./backend
       run: |
         make format
   
