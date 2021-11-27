@@ -1,16 +1,12 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, render_template
 from google.cloud import bigquery
 
-app = Flask(__name__, static_folder='userinterface/build')
+app = Flask(__name__, template_folder='./userinterface/build')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-@app.route("/", defaults={'path':''})
-def serve():
-    return send_from_directory(app.static_folder,'index.html')
-
-# @app.route('/')
-# def main_route():
-#     return render_template("index.html")
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 # @app.route('/')
 # def name():
