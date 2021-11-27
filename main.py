@@ -25,7 +25,7 @@ def name(value):
     val = {"value": value}
     return jsonify(val)
 
-@app.route('/',  methods=['GET', 'POST'])
+@app.route('/login',  methods=['GET', 'POST'])
 def login():
     deviceid = request.values.get('deviceid')
     return '/login - device: {}\n'.format(deviceid)
