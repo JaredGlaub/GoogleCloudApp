@@ -54,6 +54,7 @@ jobs:
         run: echo I am deploying!
       - name: Install dependencies
         run: npm install
+        working-directory: ./userInteface
       - name: Run the tests
         run: npm test
       - name: Build
