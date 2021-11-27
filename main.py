@@ -5,10 +5,10 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
-app = Flask(__name__, static_url_path='', static_folder='userinterface/build')
+app = Flask(__name__, static_folder='userinterface/build')
 
 @app.route("/", defaults={'path':''})
-def serve(path):
+def serve():
     return send_from_directory(app.static_folder,'index.html')
 
 # @app.route('/')
