@@ -53,11 +53,14 @@ jobs:
       - name: Deploy
         run: echo I am deploying!
       - name: Install dependencies
+        working-directory: /GoogleCloudApp/userinterface
         run: npm install
-        working-directory: ./userInteface
+    
       - name: Run the tests
+#         working-directory: /GoogleCloudApp/userinterface
         run: npm test
       - name: Build
+#         working-directory: /GoogleCloudApp/userinterface
         run: npm run build
         
   DeployProd:
