@@ -7,7 +7,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route("/")
 def index():
-    try {
+    try:
         return render_template("index.html")
     except Exception as e:
         return str(e)
