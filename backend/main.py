@@ -6,7 +6,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route('/')
 def main_route():
-    return render_template("index.html", token = "token")
+    return render_template("index.html")
 
 @app.route('/name/<name>')
 def name(value):
@@ -24,11 +24,6 @@ def metrics():
     timestamp = request.values.get('timestamp')
     
     return '/metrics - device: {}, timestamp: {}\n'.format(deviceid, timestamp)
-
-@app.route('/helloWorld')
-def helloWorld():
-    val = {"value": "hello World"}
-    return jsonify(val)
 
 @app.route('/prediction')
 def predictionResults():
