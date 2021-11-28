@@ -1,16 +1,13 @@
 from flask import Flask, jsonify, request, render_template
 from google.cloud import bigquery
 
-app = Flask(__name__, static_folder="./build/static", template_folder="./build")
+app = Flask(__name__)
 
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route("/")
 def index():
-    try:
-        return render_template("index.html")
-    except Exception as e:
-        return str(e)
+    return render_template("index.html")
 
 # @app.route('/')
 # def name():
