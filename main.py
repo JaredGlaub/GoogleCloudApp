@@ -4,10 +4,11 @@ from google.cloud import bigquery
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-# @app.route("/")
-# def home():
-#     return render_template('index.html')
-@app.route('/')
+@app.route("/")
+def home():
+    return render_template('index.html')
+    
+@app.route('/predict')
 def predict():
     bqclient = bigquery.Client()
     query_string = """SELECT predicted_income_bracket,probability, top_feature_attributions FROM `burnished-ember-328422.census.predictionResults` LIMIT 10"""
