@@ -8,10 +8,8 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # def home():
 #     return render_template('index.html')
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch(path):
-    """ This is a catch all that is required for react-router """
+@app.route('/')
+def catch():
     return render_template('index.html')
 
 # @app.route('/')
