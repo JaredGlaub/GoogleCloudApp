@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, send_from_directory
 from google.cloud import bigquery
 
-app = Flask(__name__, static_folder="userinterface/build/static", template_folder="userinterface/build")
+app = Flask(__name__, static_folder="./userinterface/build/static", template_folder="./userinterface/build")
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 # @app.route("/")
@@ -16,6 +16,12 @@ def catch():
 # def name():
 #     val = "Hello World"
 #     return jsonify(val)
+
+@app.errorhandler(500)
+def handle_500(e):
+    if request.path.startswith("/userinterface/"):
+        return jsonify(message="Resource not found"), 500
+    return send_from_directory(app.static_folder, "index.html")
 
 @app.route('/name/<name>')
 def name(value):
