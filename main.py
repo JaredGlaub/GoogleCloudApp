@@ -1,11 +1,17 @@
-from flask import Flask, jsonify, request, render_template, send_from_directory
+from flask import Flask, jsonify, request, render_template
 from google.cloud import bigquery
 
-app = Flask(__name__, static_folder="/userinterface/build/static", template_folder="userinterface/build")
+app = Flask(__name__, static_folder="userinterface/build/static", template_folder="userinterface/build")
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-@app.route("/")
-def home():
+# @app.route("/")
+# def home():
+#     return render_template('index.html')
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch(path):
+    """ This is a catch all that is required for react-router """
     return render_template('index.html')
 
 # @app.route('/')
