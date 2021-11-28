@@ -3,7 +3,7 @@ from google.cloud import bigquery
 
 app = Flask(__name___, static_url_path='',
                   static_folder='./userinterface/build',
-                  template_folder='./userinterface/build'))
+                  template_folder='./userinterface/build')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route("/")
