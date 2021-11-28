@@ -1,7 +1,7 @@
 {
     "name": "userinterface",
-    "proxy": "http://localhost:5000",
     "version": "0.1.0",
+    "homepage": "/",
     "private": true,
     "dependencies": {
       "@chakra-ui/layout": "^1.5.1",
