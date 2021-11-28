@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {Route, Routes, HashRouter} from "react-router-dom";
 
 import Landing from "./pages/Landing";
 import Animated from "./pages/Animated";
@@ -8,13 +8,13 @@ import DoodleNet from "./pages/DoodleNet";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
         <Routes>
           <Route path="/" element={<Landing/>} />
           <Route path='/Animated' element={<Animated/>} />
           <Route path='/Training' element={<Training/>} />
           <Route path='/DoodleNet' element={<DoodleNet/>} />
         </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
