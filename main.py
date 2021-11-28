@@ -1,27 +1,37 @@
-from flask import Flask, jsonify, request, render_template, send_from_directory
+from flask import Flask, jsonify, request, render_template
 from google.cloud import bigquery
 
-app = Flask(__name__, static_folder="./userinterface/build/static", template_folder="./userinterface/build")
+app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 # @app.route("/")
 # def home():
 #     return render_template('index.html')
-
 @app.route('/')
-def catch():
-    return render_template('index.html')
+def predict():
+    bqclient = bigquery.Client()
+    query_string = """SELECT predicted_income_bracket,probability, top_feature_attributions FROM `burnished-ember-328422.census.predictionResults` LIMIT 10"""
+    
+    df = (
+        bqclient.query(query_string)
+        .result()
+        .to_dataframe(
+            # Optionally, explicitly request to use the BigQuery Storage API. As of
+            # google-cloud-bigquery version 1.26.0 and above, the BigQuery Storage
+            # API is used by default.
+            create_bqstorage_client=True,
+        )
+    )
+    shorten = df.head(2)
+    table = shorten.to_html(index=False)
+    return render_template(
+        "table.html",
+        table=table)
 
 # @app.route('/')
 # def name():
 #     val = "Hello World"
 #     return jsonify(val)
-
-@app.errorhandler(500)
-def handle_500(e):
-    if request.path.startswith("/userinterface/"):
-        return jsonify(message="Resource not found"), 500
-    return send_from_directory(app.static_folder, "index.html")
 
 @app.route('/name/<name>')
 def name(value):
